@@ -1,3 +1,5 @@
+package lesson2;
+
 import lesson2.MyArrayList;
 
 public class Main {

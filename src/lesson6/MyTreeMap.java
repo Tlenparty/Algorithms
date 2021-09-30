@@ -18,6 +18,7 @@ public class MyTreeMap<K extends Comparable<K>, V> {
             this.key = key;
             this.value = value;
             this.size = 1;
+            this.height = 0;
         }
     }
 
@@ -30,8 +31,20 @@ public class MyTreeMap<K extends Comparable<K>, V> {
     }
 
     private int height(Node node) {
-        if (node == null) return 0;
-        return node.height;
+        if (node == null) {
+            return 0;
+        }
+        if (node.left == null && node.right == null) {
+            return 0;
+        }
+        if (node.left == null) {
+            return node.right.height + 1;
+        } else if (node.right == null) {
+            return node.left.height + 1;
+        } else {
+            return Math.max((size(node.left)), (size(node.right))) + 1;
+        }
+
     }
 
     private int size(Node node) {
@@ -40,13 +53,18 @@ public class MyTreeMap<K extends Comparable<K>, V> {
         }
         return node.size;
     }
-    
-    public boolean reverseCheckBalance(MyTreeMap myTreeMap){
-        // TODO: 29.09.2021  
+
+    public boolean isBalance() {
+        return isBalance(root);
     }
-    
-    private boolean isBalanced(Node node) {
-        return Math.abs(height(node.left) - height(node.right)) <= 1;
+
+    private boolean isBalance(Node node) {
+        if (node == null) {
+            return true;
+        }if(node.left ==null&& node.right==null){
+            return true;
+        }return Math.abs(height(node.left) - height(node.right)) <= 1
+                && isBalance(node.left) && isBalance(node.right);
     }
 
     public boolean isEmpty() {
@@ -105,7 +123,8 @@ public class MyTreeMap<K extends Comparable<K>, V> {
         }
         node.size = size(node.left) + size(node.right) + 1;
         // Максимальная высота его правого и левого поддерева
-        node.height = Math.max((size(node.left)), (size(node.right))) + 1;
+       // node.height = Math.max((size(node.left)), (size(node.right))) + 1;
+        node.height = height(node);
         return node;
     }
 
@@ -133,7 +152,7 @@ public class MyTreeMap<K extends Comparable<K>, V> {
         }
         node.left = removeMin(node.left);
         node.size = size(node.left) + size(node.right) + 1;
-        node.height = Math.max((size(node.left)), (size(node.right))) + 1;
+        node.height = height(node);
         return node;
     }
 
@@ -164,7 +183,7 @@ public class MyTreeMap<K extends Comparable<K>, V> {
             node.left = temp.left;
         }
         node.size = size(node.left) + size(node.right) + 1;
-        node.height = Math.max((size(node.left)), (size(node.right))) + 1;
+        node.height = height(node);
         return node;
     }
 

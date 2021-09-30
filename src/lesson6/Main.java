@@ -4,25 +4,27 @@ import java.util.Random;
 
 public class Main {
 
-    /**
-     * 1.Создать и запустить программу для построения двоичного дерева.
-     * В цикле построить двадцать деревьев с глубиной в 6 уровней.
-     * Данные, которыми необходимо заполнить узлы деревьев, представляются в виде чисел типа int.
-     * Число, которое попадает в узел, должно генерироваться случайным образом в диапазоне от -100 до 100.
-     * 2.Проанализировать, какой процент созданных деревьев являются несбалансированными.
-     */
     public static void main(String[] args) {
-        //MyTreeMap<Integer, String> map = new MyTreeMap<>();
-        final int min = -100; // Минимальное число для диапазона
-        final int max = 100; // Максимальное число для диапазона
+
         Random random = new Random();
-        for (int i = 0; i < 20; i++) {
-            MyTreeMap<Integer, String> map = new MyTreeMap<>();
-            while(map.height()!=7){
-                map.put((random.nextInt(max - min)) + min,"i");
+        int countTree = 10000;
+        int balCount = 0;
+
+        for (int i = 0; i < countTree; i++) {
+            MyTreeMap<Integer, Integer> map = new MyTreeMap<>();
+            int x = 0;
+            while (map.height() < 6) {
+                // От -100 до 100
+                x = random.nextInt(201) - 100;
+                map.put(x, x);
             }
-            System.out.println(map);
-            i++;
+            map.remove(x);
+            if (map.isBalance()) {
+                balCount++;
+            }
         }
+        System.out.println("balCount = " + balCount + " countTree = " + countTree);
+        System.out.println("balanced " + (double) balCount / countTree * 100 + " %");
+        System.out.println("no balanced " + (double) (countTree - balCount) / countTree * 100 + " %");
     }
 }

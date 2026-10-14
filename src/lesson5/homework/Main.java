@@ -3,7 +3,7 @@ package lesson5.homework;
 public class Main {
     public static void main(String[] args) {
 
-        // Возведения в степень
+        // Р’РѕР·РІРµРґРµРЅРёСЏ РІ СЃС‚РµРїРµРЅСЊ
         System.out.println("task1");
         System.out.println(" 2 ^ 3 = " + exponentiation(2, 3));
         System.out.println(" 2 ^ 0 = " + exponentiation(2, 0));
@@ -14,7 +14,7 @@ public class Main {
         System.out.println(" 3 ^ -3 = " + exponentiation(3, -3));
         System.out.printf(" 10 ^ -3 = %f \n", exponentiation(10, -3));
 
-        // Задача о рюкзаке
+        // Р—Р°РґР°С‡Р° Рѕ СЂСЋРєР·Р°РєРµ
 
 //        W=13,N=5
 //        w1=3,p1=1
@@ -22,9 +22,9 @@ public class Main {
 //        w3=5,p3=4
 //        w4=8,p4=7
 //        w5=9,p5=6
-//        Таким образом, в набор входит 2 и 4 предмет.
-//        Стоимость рюкзака: 6+7=13
-//        Вес рюкзака: 4+8=12
+//        РўР°РєРёРј РѕР±СЂР°Р·РѕРј, РІ РЅР°Р±РѕСЂ РІС…РѕРґРёС‚ 2 Рё 4 РїСЂРµРґРјРµС‚.
+//        РЎС‚РѕРёРјРѕСЃС‚СЊ СЂСЋРєР·Р°РєР°: 6+7=13
+//        Р’РµСЃ СЂСЋРєР·Р°РєР°: 4+8=12
 
         Item[] arrOfItems = {new Item(1, 3),
                 new Item(6, 4),
@@ -33,14 +33,14 @@ public class Main {
                 new Item(6, 9)};
 
         Bagpack bagpack = new Bagpack(arrOfItems);
-        int bagpackCapacity = 13; // вместимость рюкзака
+        int bagpackCapacity = 13; // РІРјРµСЃС‚РёРјРѕСЃС‚СЊ СЂСЋРєР·Р°РєР°
         System.out.println("task2");
         System.out.println(bagpack.findBestSum(arrOfItems.length - 1, bagpackCapacity));
     }
 
     private static double exponentiation(double value, int power) {
         if (value == 0 && power <= 0) {
-            throw new ArithmeticException("Неопределенность");
+            throw new ArithmeticException("РќРµРѕРїСЂРµРґРµР»РµРЅРЅРѕСЃС‚СЊ");
         }
         if (power == 0) {
             return 1;
